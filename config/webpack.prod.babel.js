@@ -1,10 +1,11 @@
 import merge from 'webpack-merge';
 import webpack from 'webpack';
-import common from './webpack.common.babel.js';
 
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import UglifyJsPlugin from 'uglifyjs-webpack-plugin';
 import OptimizeCSSAssetsPlugin from 'optimize-css-assets-webpack-plugin';
+
+import common from './webpack.common.babel.js';
 
 export default merge.smart(common, {
     mode: 'production',
@@ -27,7 +28,6 @@ export default merge.smart(common, {
                     {
                         loader: 'css-loader',
                         options: {
-                            //modules: true,
                             localIdentName: '[path][name]__[local]--[hash:base64:5]'
                         }
                     },

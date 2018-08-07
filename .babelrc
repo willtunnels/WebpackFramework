@@ -5,6 +5,9 @@
             "react-css-modules",
             {
                 "filetypes": {
+                    ".sass": {
+                        "syntax": "postcss-sass"
+                    },
                     ".scss": {
                         "syntax": "postcss-scss"
                     }

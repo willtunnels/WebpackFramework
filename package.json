@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "prod": "webpack --config config/webpack.prod.babel.js",
-    "dev": "webpack-dev-server --config config/webpack.dev.babel.js --open"
+    "dev": "webpack-serve --config config/webpack.dev.babel.js --open"
   },
   "author": "",
   "license": "ISC",
@@ -17,7 +17,6 @@
     "babel-plugin-react-css-modules": "^3.4.2",
     "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.24.1",
-    "babel-register": "^6.26.0",
     "clean-webpack-plugin": "^0.1.19",
     "css-loader": "^1.0.0",
     "dotenv": "^6.0.0",

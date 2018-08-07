@@ -1,8 +1,7 @@
 import path from 'path';
-import { ROOT, SRC, DIST, ASSETS } from './paths.babel.js';
-
 import CleanWebpackPlugin from 'clean-webpack-plugin';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
+import { ROOT, SRC, DIST, ASSETS } from './paths.babel.js';
 
 export default {
     entry: {
