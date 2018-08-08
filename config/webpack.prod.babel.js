@@ -5,7 +5,8 @@ import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import UglifyJsPlugin from 'uglifyjs-webpack-plugin';
 import OptimizeCSSAssetsPlugin from 'optimize-css-assets-webpack-plugin';
 
-import common from './webpack.common.babel.js';
+import common from './webpack.common.js';
+import { MakeCssRules } from './webpack.parts.js';
 
 export default merge.smart(common, {
     mode: 'production',
@@ -21,18 +22,11 @@ export default merge.smart(common, {
     ],
     module: {
         rules: [
+            ...MakeCssRules(MiniCssExtractPlugin.loader),
             {
-                test: /\.(sa|sc|c)ss$/,
-                use: [
-                    MiniCssExtractPlugin.loader,
-                    {
-                        loader: 'css-loader',
-                        options: {
-                            localIdentName: '[path][name]__[local]--[hash:base64:5]'
-                        }
-                    },
-                    'sass-loader'
-                ]
+                test: /\.(jpe?g|png|gif|svg)$/,
+                use: ['image-webpack-loader'],
+                enforce: 'pre'
             }
         ]
     },
@@ -42,7 +36,7 @@ export default merge.smart(common, {
                 cache: true,
                 parallel: true
             }),
-            new OptimizeCSSAssetsPlugin({})
+            new OptimizeCSSAssetsPlugin()
         ]
     }
 });

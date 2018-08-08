@@ -1,5 +1,6 @@
 import merge from 'webpack-merge';
-import common from './webpack.common.babel.js';
+import common from './webpack.common.js';
+import { MakeCssRules } from './webpack.parts.js';
 
 export default merge.smart(common, {
     mode: 'development',
@@ -10,20 +11,6 @@ export default merge.smart(common, {
         chunkFilename: '[name].js'
     },
     module: {
-        rules: [
-            {
-                test: /\.(sa|sc|c)ss$/,
-                use: [
-                    'style-loader',
-                    {
-                        loader: 'css-loader',
-                        options: {
-                            localIdentName: '[path][name]__[local]--[hash:base64:5]'
-                        }
-                    },
-                    'sass-loader'
-                ]
-            }
-        ]
+        rules: [...MakeCssRules('style-loader')]
     },
 });

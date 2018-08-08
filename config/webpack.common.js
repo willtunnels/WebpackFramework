@@ -1,7 +1,7 @@
 import path from 'path';
 import CleanWebpackPlugin from 'clean-webpack-plugin';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
-import { ROOT, SRC, DIST, ASSETS } from './paths.babel.js';
+import { ROOT, SRC, DIST, ASSETS } from './paths.js';
 
 export default {
     entry: {
@@ -33,12 +33,35 @@ export default {
                 use: ['babel-loader']
             },
             {
-                test: /\.(png|svg|jpg|gif)$/,
-                use: ['file-loader']
+                test: /\.(woff|woff2|eot|ttf|otf)$/,
+                use: {
+                    loader: 'url-loader',
+                    options: {
+                        limit: 10 * 1024,
+                        name: './fonts/[name].[hash].[ext]'
+                    }
+                }
             },
             {
-                test: /\.(woff|woff2|eot|ttf|otf)$/,
-                use: ['file-loader']
+                test: /\.(jpe?g|png|gif)$/,
+                use: {
+                    loader: 'url-loader',
+                    options: {
+                        limit: 10 * 1024,
+                        name: './images/[name].[hash].[ext]'
+                    }
+                }
+            },
+            {
+                test: /\.svg$/,
+                use: {
+                    loader: 'svg-url-loader',
+                    options: {
+                        limit: 10 * 1024,
+                        noquotes: true,
+                        name: './images/[name].[hash].[ext]'
+                    }
+                }
             }
         ]
     },
